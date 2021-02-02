@@ -33,14 +33,14 @@ function displayParticipants(){
 
 function init(){
     const domain = 'meet.jit.si';
-    const name = '1ff7c918-50de-49c0-8626-9a4894c23b8b Oreilly Exhibitor';
+    const name = 'BOMBELLI Airport Equipment';
     const options = {
-        roomName:name,
+        roomName:`Networking Lounge for ${name}`,
         width: 500,
         height: 500,
         parentNode: document.querySelector('#video'),
         userInfo: {
-            displayName: 'Oreilly Exhibitor'
+            displayName: name
         },
         configOverwrite : {
             prejoinPageEnabled: false

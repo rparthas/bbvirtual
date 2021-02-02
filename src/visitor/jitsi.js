@@ -19,9 +19,9 @@ s.parentNode.insertBefore(scanner, s);
 
 var api;
 
-function init(){
+function init(roomName){
     const domain = 'meet.jit.si';
-    const name = "1ff7c918-50de-49c0-8626-9a4894c23b8b Oreilly Exhibitor";
+    const name = `Networking Lounge for ${roomName}`;
     const options = {
         roomName:name,
         width: 500,
@@ -60,14 +60,14 @@ function init(){
     });
     api.addEventListener('videoConferenceLeft',(_)=>{
         api.dispose();
-        $('.join').show();
+        $("#exhibitors").show();
     });
     window.scrollTo(0,document.body.scrollHeight);
 }
 
-function start() {
-    init();
-    $('.join').hide();
+function start(roomName) {
+    init(roomName);
+    $("#exhibitors").hide(1000);
 }
 
 function validate(){
