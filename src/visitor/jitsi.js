@@ -27,7 +27,27 @@ function init(){
         width: 500,
         height: 500,
         parentNode: document.querySelector('#video'),
-        configOverwrite: { startWithAudioMuted: true, enableWelcomePage : false },
+        configOverwrite: { 
+            startWithAudioMuted: true, 
+            startAudioOnly: true,
+            prejoinPageEnabled: false,
+            notifications: [
+                'connection.CONNFAIL', // shown when the connection fails,
+                'dialog.kickTitle', // shown when user has been kicked
+                'notify.startSilentTitle', // shown when user joined with no audio
+                'prejoin.errorDialOut',
+                'prejoin.errorDialOutDisconnected',
+                'prejoin.errorDialOutFailed',
+                'prejoin.errorDialOutStatus',
+                'prejoin.errorStatusCode',
+                'prejoin.errorValidation'
+            ]
+        },
+        interfaceConfigOverwrite:{
+            TOOLBAR_BUTTONS: [
+                'fullscreen','hangup', 'profile', 'chat','raisehand'
+            ],
+        },
         userInfo: {
             displayName: $("#name").val(),
             avatarURL: $("#email").val()
