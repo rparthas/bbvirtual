@@ -40,22 +40,23 @@ function init(){
     });
     api.addEventListener('videoConferenceLeft',(_)=>{
         api.dispose();
-        $('#join').show();
+        $('.join').show();
     });
+    window.scrollTo(0,document.body.scrollHeight);
 }
 
 function start() {
     init();
-    $('#join').hide();
+    $('.join').hide();
 }
 
 function validate(){
     var name = $("#name").val();
     var email = $("#email").val();
     if (name && name.length >0 && email && email.length>4){
-        $("#join").prop('disabled', false);
+        $(".join").prop('disabled', false);
     }else{
-        $("#join").prop('disabled', true);
+        $(".join").prop('disabled', true);
     }
 }
 

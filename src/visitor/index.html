@@ -2,7 +2,9 @@
 
 <head>
     <style>
-
+        .shadow-effects:hover{
+            box-shadow: 5px 5px 5px gray;
+        }
     </style>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -36,16 +38,68 @@
                     aria-describedby="mail-addon" id="email" onblur=validate()>
             </div>
         </div>
-        <div class="row mt-4">
+        <!-- <div class="row mt-4">
             <div class="col-md-3"></div>
             <div id="video" class="col-md-7">
                 <button disabled=true class="btn btn-success" id="join" onclick=start()>Join Oreilly Exhibitor on
                     call</button>
             </div>
             <div class="col-md-2"></div>
-        </div>
+        </div> -->
     </div>
+      <section class="py-5">
+        <div class="container text-center">
+          <h2>Exhibitors</h2>
+          <div class="row">
+            <div class="col-md-4 my-4">
+              <div class="border rounded p-4 h-100 shadow-effects">
+                <div class="p-2 py-3 h-45">
+                    <img class="img-fluid mx-auto my-4" src="https://pub-mediabox-storage.rxweb-prd.com/exhibitor/products/exh-db6d568f-3c7c-4519-a3a0-9bcb6eb0dd6a/desktop-small-product/b9d23cc7-7a6a-43e4-b280-ab726f54e109.png" alt="">
+                </div>
+                <h3 class="mb-3 font-weight-normal">BOMBELLI Airport Equipment</h3>
+                <p class="lead">BOMBELLI Airport Equipment is a leading manufacturer of lithium-based high-performance battery systems for electro-mobility at airports around the globe.</p>
+                <p class="my-4">Max Allowed: <strong><large class="text-muted">10</large></p></strong>
+                <p class="my-4">Current Count: <strong><large class="text-muted">5</large></p></strong>
+                <div id="videos1" class="col-md-12">
+                    <button disabled=true class="btn btn-lg btn-success join" id="join" onclick=start()>Join call</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 my-4">
+              <div class="border rounded p-4 h-100 shadow-effects">
+              <div class="p-2 py-3 h-45">
+                <img class="img-fluid mx-auto my-4" src="https://pub-mediabox-storage.rxweb-prd.com/exhibitor/products/exh-1442c25a-dd83-4535-b359-bf60371a69d9/desktop-small-product/30ba9507-b3dc-40a7-ba80-f92bc59b1221.jpg" alt="">
+                </div>
+                <h3 class="mb-3 font-weight-normal">Data Capture Systems (DCS)</h3>
+                <p class="lead">One-stop solution provider for the aviation industry to simplify all passenger data capture, ATB/BTP printing, and control processes in Airports.</p>
+                <p class="my-4">Max Allowed: <strong><large class="text-muted">15</large></p></strong>
+                <p class="my-4">Current Count: <strong><large class="text-muted">0</large></p></strong>
+                <div id="videos2" class="col-md-12">
+                    <button disabled=true class="btn btn-lg btn-success join" id="join" onclick=start()>Join call</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 my-4">
+              <div class="border rounded p-4 h-100 shadow-effects">
+              <div class="p-2 py-3 h-45">
+                <img class="img-fluid mx-auto my-4" src="https://pub-mediabox-storage.rxweb-prd.com/exhibitor/products/exh-ef94be16-702f-4877-a07b-f1590649f182/desktop-small-product/5bc497a8-0d08-4a63-abe4-9094c7f10e92.png" alt="">
+                </div>
+                <h3 class="mb-3 font-weight-normal">Access IS</h3>
+                <p class="lead">Access IS, a state-of-the-art, highly configurable, multi-functional OCR/MSR reader with a low profile design, unmistakable user feedback and 1D/2D barcode reading and RFID functionality</p>
+                <p class="my-4">Max Allowed: <strong><large class="text-muted">15</large></p></strong>
+                <p class="my-4">Current Count: <strong><large class="text-muted">15</large></p></strong>
+                <div id="videos3" class="col-md-12">
+                    <button disabled=true class="btn btn-lg btn-success join" id="join" onclick=start()>Join call</button>
+                </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div id="video" class="col-md-12" style="text-align: center;">
+      </div>
     <div id='scannedText'></div>
+    <br />
+    <br />
 </body>
 
 </html>
