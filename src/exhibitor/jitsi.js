@@ -42,7 +42,9 @@ function init(){
         userInfo: {
             displayName: 'Oreilly Exhibitor'
         },
-        configOverwrite : {enableWelcomePage : false}
+        configOverwrite : {
+            prejoinPageEnabled: false
+        }
     };
     api = new JitsiMeetExternalAPI(domain, options);
     api.addEventListener('endpointTextMessageReceived',(event)=>{
