@@ -82,7 +82,7 @@ function init(roomName, roomType){
     window.scrollTo(0,document.body.scrollHeight);
 }
 
-function start(roomName,type="webinar") {
+function start(roomName,type) {
     init(roomName,type);
     $("#exhibitors").hide(1000);
 }
