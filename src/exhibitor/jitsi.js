@@ -31,11 +31,11 @@ function displayParticipants(){
     inActiveParticipants.forEach(participant => {$('#inactiveParticipantsList').append(`<li class="list-group-item">${participant.displayName}</li>`)});
 }
 
-function init(){
+function init(roomType){
     const domain = 'meet.jit.si';
     const name = 'BOMBELLI Airport Equipment';
     const options = {
-        roomName:`Networking Lounge for ${name}`,
+        roomName: roomType == "Lounge" ? `Networking Lounge for ${name}`:`Webinar for ${name}`,
         width: 500,
         height: 500,
         parentNode: document.querySelector('#video'),
@@ -91,8 +91,8 @@ function scan(){
     });
 }
 
-function start() {
-    init();
+function start(roomType) {
+    init(roomType);
     scan();
     $('#startBtn').hide();
 }

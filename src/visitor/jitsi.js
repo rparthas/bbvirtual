@@ -19,35 +19,52 @@ s.parentNode.insertBefore(scanner, s);
 
 var api;
 
-function init(roomName){
+function init(roomName, roomType){
     const domain = 'meet.jit.si';
-    const name = `Networking Lounge for ${roomName}`;
+    const isLounge = roomType == "lounge";
+    const name = isLounge ? `Networking Lounge for ${roomName}`:`Webinar for ${roomName}`;
+    var configOverwrite =  isLounge ? 
+    { 
+        startWithAudioMuted: true, 
+        startAudioOnly: true,
+        prejoinPageEnabled: false,
+    }:
+    { 
+        startWithAudioMuted: true, 
+        startAudioOnly: true,
+        prejoinPageEnabled: false,
+        notifications: [
+            'connection.CONNFAIL', // shown when the connection fails,
+            'dialog.kickTitle', // shown when user has been kicked
+            'notify.startSilentTitle', // shown when user joined with no audio
+            'prejoin.errorDialOut',
+            'prejoin.errorDialOutDisconnected',
+            'prejoin.errorDialOutFailed',
+            'prejoin.errorDialOutStatus',
+            'prejoin.errorStatusCode',
+            'prejoin.errorValidation'
+        ]
+    };
+    var interfaceConfigOverwrite = isLounge ? {
+        TOOLBAR_BUTTONS: [
+            'microphone', 'camera', 'closedcaptions', 'desktop', 'embedmeeting', 'fullscreen',
+            'fodeviceselection', 'hangup', 'profile', 'chat',
+            'etherpad', 'sharedvideo', 'settings', 'raisehand',
+            'videoquality', 'filmstrip', 'feedback',  'shortcuts',
+            'tileview', 'videobackgroundblur', 'download', 'help'
+        ]
+    }:{
+        TOOLBAR_BUTTONS: [
+            'fullscreen','hangup', 'profile', 'chat','raisehand'
+        ]
+    };
     const options = {
         roomName:name,
         width: 500,
         height: 500,
         parentNode: document.querySelector('#video'),
-        configOverwrite: { 
-            startWithAudioMuted: true, 
-            startAudioOnly: true,
-            prejoinPageEnabled: false,
-            notifications: [
-                'connection.CONNFAIL', // shown when the connection fails,
-                'dialog.kickTitle', // shown when user has been kicked
-                'notify.startSilentTitle', // shown when user joined with no audio
-                'prejoin.errorDialOut',
-                'prejoin.errorDialOutDisconnected',
-                'prejoin.errorDialOutFailed',
-                'prejoin.errorDialOutStatus',
-                'prejoin.errorStatusCode',
-                'prejoin.errorValidation'
-            ]
-        },
-        interfaceConfigOverwrite:{
-            TOOLBAR_BUTTONS: [
-                'fullscreen','hangup', 'profile', 'chat','raisehand'
-            ],
-        },
+        configOverwrite,
+        interfaceConfigOverwrite,
         userInfo: {
             displayName: $("#name").val(),
             avatarURL: $("#email").val()
@@ -65,8 +82,8 @@ function init(roomName){
     window.scrollTo(0,document.body.scrollHeight);
 }
 
-function start(roomName) {
-    init(roomName);
+function start(roomName,type="webinar") {
+    init(roomName,type);
     $("#exhibitors").hide(1000);
 }
 

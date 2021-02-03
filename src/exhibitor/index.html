@@ -2,10 +2,11 @@
 
 <head>
     <style>
-        .container{
+        .container {
             margin-top: 10vh;
         }
-        h1{
+
+        h1 {
             text-align: center;
             padding-top: 10vh;
         }
@@ -51,12 +52,18 @@
                 </div>
             </div>
         </div>
-        <div class="row mt-4">
-            <div  class="col-md-3"></div>
-            <div id="video" class="col-md-7">
-                <button type="button" id="startBtn" class="btn btn-success" onclick=start()>Start Webinar</button>
+        <div class="row mt-4" id="startBtn">
+            <div class="col-md-3"></div>
+            <div class="col-md-3">
+                <button type="button" id="webinarBtn" class="btn btn-success" onclick="start('webinar')">Start Webinar</button>
             </div>
-            <div  class="col-md-2"></div>
+            <div class="col-md-3">
+                <button type="button" id="loungeBtn" class="btn btn-success" onclick="start('lounge')">Join Lounge</button>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-3"></div>
+            <div id="video"> </div>
         </div>
     </div>
 </body>
