@@ -31,9 +31,8 @@ function displayParticipants(){
     inActiveParticipants.forEach(participant => {$('#inactiveParticipantsList').append(`<li class="list-group-item">${participant.displayName}</li>`)});
 }
 
-function init(roomType){
+function init(roomType, name){
     const domain = 'meet.jit.si';
-    const name = 'BOMBELLI Airport Equipment';
     const options = {
         roomName: roomType == "Lounge" ? `Networking Lounge for ${name}`:`Webinar for ${name}`,
         width: 500,
@@ -92,9 +91,33 @@ function scan(){
 }
 
 function start(roomType) {
-    init(roomType);
+    init(roomType,getExhibitorName());
     scan();
     $('#startBtn').hide();
+}
+
+function getExhibitorName(){
+    const result = getUrlVars();
+    if(result.id && result.id == 3){
+        return 'Access IS';
+    }
+    if(result.id && result.id == 2){
+        return 'Data Capture Systems (DCS)';
+    }
+    return 'BOMBELLI Airport Equipment';
+}
+
+function getUrlVars()
+{
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+    return vars;
 }
 
 
