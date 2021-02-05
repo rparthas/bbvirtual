@@ -8,15 +8,6 @@ jitsi.src = 'https://meet.jit.si/external_api.js';
 // jitsi.src = 'https://localhost:8443/libs/lib-jitsi-meet.min.js'; 
 s.parentNode.insertBefore(jitsi, s);
 
-
-var scanner = document.createElement('script');
-scanner.type = 'text/javascript'; 
-scanner.async = true; 
-scanner.defer = true; 
-scanner.src = 'https://rawgit.com/schmich/instascan-builds/master/instascan.min.js'; 
-s.parentNode.insertBefore(scanner, s);
-
-
 var api;
 
 function init(roomName, roomType){
@@ -66,25 +57,23 @@ function init(roomName, roomType){
         configOverwrite,
         interfaceConfigOverwrite,
         userInfo: {
-            displayName: $("#name").val(),
-            avatarURL: $("#email").val()
+            displayName: $("#name").val()
         }
     };
     api = new JitsiMeetExternalAPI(domain, options);
-    api.executeCommand('email', $("#email").val());
-    api.addEventListener('endpointTextMessageReceived',(event)=>{
-        $("#scannedText").html(`<div> Scanned this: ${event.data.eventData.text}</div>`);
-    });
+    $("#exhibitors").hide();
     api.addEventListener('videoConferenceLeft',(_)=>{
         api.dispose();
         $("#exhibitors").show();
     });
     window.scrollTo(0,document.body.scrollHeight);
+    setTimeout(() => {
+        api.executeCommand("sendEndpointTextMessage","",$("#email").val());
+    },5000);
 }
 
 function start(roomName,type) {
     init(roomName,type);
-    $("#exhibitors").hide(1000);
 }
 
 function validate(){
@@ -96,5 +85,4 @@ function validate(){
         $(".join").prop('disabled', true);
     }
 }
-
 

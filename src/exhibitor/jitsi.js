@@ -9,14 +9,6 @@ jitsi.src = 'https://meet.jit.si/external_api.js';
 s.parentNode.insertBefore(jitsi, s);
 
 
-var scanner = document.createElement('script');
-scanner.type = 'text/javascript'; 
-scanner.async = true; 
-scanner.defer = true; 
-scanner.src = 'https://rawgit.com/schmich/instascan-builds/master/instascan.min.js'; 
-s.parentNode.insertBefore(scanner, s);
-
-
 var api;
 var participants = [];
 
@@ -28,7 +20,7 @@ function displayParticipants(){
     $('#activeParticipants').html('<ul id="activeParticipantsList" class="list-group"></ul>');
     activeParticipants.forEach(participant => {$('#activeParticipantsList').append(`<li class="list-group-item">${participant.displayName}</li>`)});
     $('#inactiveParticipants').html('<ul id="inactiveParticipantsList" class="list-group"></ul>');
-    inActiveParticipants.forEach(participant => {$('#inactiveParticipantsList').append(`<li class="list-group-item">${participant.displayName}</li>`)});
+    inActiveParticipants.forEach(participant => {$('#inactiveParticipantsList').append(`<li class="list-group-item">${participant.displayName}(${participant.email})</li>`)});
 }
 
 function init(roomType, name){
@@ -47,7 +39,8 @@ function init(roomType, name){
     };
     api = new JitsiMeetExternalAPI(domain, options);
     api.addEventListener('endpointTextMessageReceived',(event)=>{
-        document.getElementById('scannedText').innerHTML = "<div> Scanned this: "+event.data.eventData.text+"</div>";
+        const {senderInfo,eventData} = event.data;
+        participants.filter(participant =>participant.participantId === senderInfo.id)[0].email = eventData.text;
     });
     api.addEventListener('participantJoined',(event)=>{
         var participant = api.getParticipantsInfo().filter(participant =>participant.participantId === event.id)[0];
@@ -62,37 +55,11 @@ function init(roomType, name){
     api.addEventListener('videoConferenceLeft',(_)=>{
         api.dispose();
         $('#startBtn').show();
-    });
-    api.addEventListener('emailChange',(event)=>{
-        console.log("### Email change###",event);
-    });
-}
-
-
-function scan(){
-    let scanner = new Instascan.Scanner({
-        video: document.getElementById('preview'),
-        scanPeriod: 5
-    });
-
-    scanner.addListener('scan', function (content) {
-        console.log(content);
-        api.executeCommand("sendEndpointTextMessage", "", content);
-    });
-    Instascan.Camera.getCameras().then(function (cameras) {
-        if (cameras.length > 0) {
-            scanner.start(cameras[0]);
-        } else {
-            console.error('No cameras found.');
-        }
-    }).catch(function (e) {
-        console.error(e);
-    });
+    }); 
 }
 
 function start(roomType) {
     init(roomType,getExhibitorName());
-    scan();
     $('#startBtn').hide();
 }
 
