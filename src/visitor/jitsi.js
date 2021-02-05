@@ -61,6 +61,9 @@ function init(roomName, roomType){
         }
     };
     api = new JitsiMeetExternalAPI(domain, options);
+    // if(isLounge){
+    //     api.executeCommand('password', 'ASecurePassword');
+    // }
     $("#exhibitors").hide();
     api.addEventListener('videoConferenceLeft',(_)=>{
         api.dispose();

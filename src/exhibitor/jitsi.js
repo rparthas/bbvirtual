@@ -25,8 +25,9 @@ function displayParticipants(){
 
 function init(roomType, name){
     const domain = 'meet.jit.si';
+    const isLounge = roomType == "lounge";
     const options = {
-        roomName: roomType == "Lounge" ? `Networking Lounge for ${name}`:`Webinar for ${name}`,
+        roomName:  isLounge ? `Networking Lounge for ${name}`:`Webinar for ${name}`,
         width: 500,
         height: 500,
         parentNode: document.querySelector('#video'),
@@ -56,6 +57,12 @@ function init(roomType, name){
         api.dispose();
         $('#startBtn').show();
     }); 
+    // api.addEventListener('participantRoleChanged', function(_) {
+    //     if (isLounge) {
+    //         console.log("######passwordset");
+    //         api.executeCommand('password', 'ASecurePassword');
+    //     }
+    // });
 }
 
 function start(roomType) {
