@@ -12,6 +12,7 @@ var api;
 
 function init(roomName, roomType){
     const domain = 'meet.jit.si';
+    const roomSize  = 1;
     const isLounge = roomType == "lounge";
     const isHb = roomType == "hb";
     const name = isLounge ?  `Networking Lounge for ${roomName}`:isHb ? `Hosted Buyer for ${roomName}` : `Webinar for ${roomName}`;
@@ -66,13 +67,24 @@ function init(roomName, roomType){
             displayName: $("#name").val()
         }
     };
+    if(isHb){
+        $('#exhibitors').hide();
+    }else{
+        $("#video").hide();
+    }
     api = new JitsiMeetExternalAPI(domain, options);
-    $("#exhibitors").hide();
+    api.addEventListener('videoConferenceJoined',(_)=>{
+        if(isLounge && api.getParticipantsInfo().length > roomSize+1){
+            api.dispose();
+            return;
+        }
+        $('#video').show();
+        $("#exhibitors").hide();
+    });
     api.addEventListener('videoConferenceLeft',(_)=>{
         api.dispose();
         $("#exhibitors").show();
     });
-    window.scrollTo(0,document.body.scrollHeight);
     setTimeout(() => {
         api.executeCommand("sendEndpointTextMessage","",$("#email").val());
     },5000);
