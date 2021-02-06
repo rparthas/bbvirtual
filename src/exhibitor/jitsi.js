@@ -20,14 +20,15 @@ function displayParticipants(){
     $('#activeParticipants').html('<ul id="activeParticipantsList" class="list-group"></ul>');
     activeParticipants.forEach(participant => {$('#activeParticipantsList').append(`<li class="list-group-item">${participant.displayName}</li>`)});
     $('#inactiveParticipants').html('<ul id="inactiveParticipantsList" class="list-group"></ul>');
-    inActiveParticipants.forEach(participant => {$('#inactiveParticipantsList').append(`<li class="list-group-item">${participant.displayName}(${participant.email})</li>`)});
+    inActiveParticipants.forEach(participant => {$('#inactiveParticipantsList').append(`<li class="list-group-item">${participant.displayName}(${participant.email ? participant.email:""})</li>`)});
 }
 
 function init(roomType, name){
     const domain = 'meet.jit.si';
     const isLounge = roomType == "lounge";
+    const isHb = roomType == "hb";
     const options = {
-        roomName:  isLounge ? `Networking Lounge for ${name}`:`Webinar for ${name}`,
+        roomName:  isLounge ?  `Networking Lounge for ${name}`:isHb ? `Hosted Buyer for ${name}` : `Webinar for ${name}`,
         width: 500,
         height: 500,
         parentNode: document.querySelector('#video'),
@@ -57,12 +58,11 @@ function init(roomType, name){
         api.dispose();
         $('#startBtn').show();
     }); 
-    // api.addEventListener('participantRoleChanged', function(_) {
-    //     if (isLounge) {
-    //         console.log("######passwordset");
-    //         api.executeCommand('password', 'ASecurePassword');
-    //     }
-    // });
+    api.addEventListener('participantRoleChanged', function(_) {
+        if (isHb) {
+            api.executeCommand('password', 'ASecurePassword');
+        }
+    });
 }
 
 function start(roomType) {

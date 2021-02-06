@@ -13,12 +13,18 @@ var api;
 function init(roomName, roomType){
     const domain = 'meet.jit.si';
     const isLounge = roomType == "lounge";
-    const name = isLounge ? `Networking Lounge for ${roomName}`:`Webinar for ${roomName}`;
+    const isHb = roomType == "hb";
+    const name = isLounge ?  `Networking Lounge for ${roomName}`:isHb ? `Hosted Buyer for ${roomName}` : `Webinar for ${roomName}`;
     var configOverwrite =  isLounge ? 
     { 
         startWithAudioMuted: true, 
         startAudioOnly: true,
         prejoinPageEnabled: false,
+    }:
+    isHb ?
+    { 
+        startWithAudioMuted: true, 
+        prejoinPageEnabled: true,
     }:
     { 
         startWithAudioMuted: true, 
@@ -36,7 +42,7 @@ function init(roomName, roomType){
             'prejoin.errorValidation'
         ]
     };
-    var interfaceConfigOverwrite = isLounge ? {
+    var interfaceConfigOverwrite = isLounge || isHb ? {
         TOOLBAR_BUTTONS: [
             'microphone', 'camera', 'closedcaptions', 'desktop', 'embedmeeting', 'fullscreen',
             'fodeviceselection', 'hangup', 'profile', 'chat',
@@ -61,9 +67,6 @@ function init(roomName, roomType){
         }
     };
     api = new JitsiMeetExternalAPI(domain, options);
-    // if(isLounge){
-    //     api.executeCommand('password', 'ASecurePassword');
-    // }
     $("#exhibitors").hide();
     api.addEventListener('videoConferenceLeft',(_)=>{
         api.dispose();
