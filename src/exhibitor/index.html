@@ -19,6 +19,26 @@
             justify-content: center;
         }
 
+        .card {
+            background-color: lightgrey;
+            box-shadow: 2px 2px 2px gray;
+        }
+
+        .medium-icon {
+            font-size: 30px;
+            color: #4d85ba;
+        }
+
+        .card-heading {
+            color: #4d85ba;
+            margin: 10px;
+        }
+
+        .card-description {
+            margin-top: 30px;
+            font-size: 15px;
+        }
+
     </style>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -31,6 +51,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <script src="./jitsi.js"></script>
 </head>
 
@@ -54,6 +75,40 @@
                 </table>
             </div>
         </div>
+        <section class="py-3">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="border rounded p-4 h-100 card" style="background-color: #f7f7f7;">
+                            <i class="bi bi-person-fill medium-icon"></i>
+                            <h5 class="mb-3 font-weight-normal card-heading">Edit Profile Page</h5>
+                            <p class="card-description">This information will appear in the show website. </p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="border rounded p-4 h-100 card" style="background-color: #f7f7f7;">
+                            <i class="bi bi-person-badge-fill medium-icon"></i>
+                            <h5 class="mb-3 font-weight-normal card-heading">Badges</h5>
+                            <p class="card-description">Download and print your badges. </p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="border rounded p-4 h-100 card" style="background-color: #f7f7f7;">
+                            <i class="bi bi-journal-bookmark-fill medium-icon"></i>
+                            <h5 class="mb-3 font-weight-normal card-heading">Manual</h5>
+                            <p class="card-description">Access the Exhibitor Manual. </p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="border rounded p-4 h-100 card" style="background-color: #f7f7f7;">
+                            <i class="bi bi-calendar-date-fill medium-icon"></i>
+                            <h5 class="mb-3 font-weight-normal card-heading">Diary Manager</h5>
+                            <p class="card-description">Access and manager diaries for you and your sharers. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <div class="row mt-4">
             <div class="col-md-3"></div>
             <div class="col-md-3">
