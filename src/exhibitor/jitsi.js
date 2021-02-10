@@ -65,7 +65,7 @@ function init(roomType, name){
     });
 }
 
-function  (roomType) {
+function start (roomType) {
     init(roomType,getExhibitorName());
     $('#startBtn').hide();
 }
