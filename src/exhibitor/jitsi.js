@@ -65,7 +65,7 @@ function init(roomType, name){
     });
 }
 
-function start(roomType) {
+function  (roomType) {
     init(roomType,getExhibitorName());
     $('#startBtn').hide();
 }
@@ -81,6 +81,17 @@ function getExhibitorName(){
     return 'BOMBELLI Airport Equipment';
 }
 
+function getExhibitorPackage(){
+    const result = getUrlVars();
+    if(result.id && result.id == 3){
+        return 'Silver';
+    }
+    if(result.id && result.id == 2){
+        return 'Gold';
+    }
+    return 'Bronze';
+}
+
 function getUrlVars()
 {
     var vars = [], hash;
@@ -93,5 +104,10 @@ function getUrlVars()
     }
     return vars;
 }
+
+$( document ).ready(function() {
+    $("#ex-name").html(getExhibitorName());
+    $("#ex-package").html(getExhibitorPackage());
+});
 
 

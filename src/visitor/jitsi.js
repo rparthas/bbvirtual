@@ -9,10 +9,10 @@ jitsi.src = 'https://meet.jit.si/external_api.js';
 s.parentNode.insertBefore(jitsi, s);
 
 var api;
+var roomSize  = 1;
 
 function init(roomName, roomType){
     const domain = 'meet.jit.si';
-    const roomSize  = 1;
     const isLounge = roomType == "lounge";
     const isHb = roomType == "hb";
     const name = isLounge ?  `Networking Lounge for ${roomName}`:isHb ? `Hosted Buyer for ${roomName}` : `Webinar for ${roomName}`;
@@ -104,3 +104,22 @@ function validate(){
     }
 }
 
+function getUrlVars()
+{
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+    return vars;
+}
+
+$( document ).ready(function() {
+    const result = getUrlVars();
+    if(result.sz){
+        roomSize=result.sz;
+    }
+});
