@@ -28,7 +28,7 @@ function init(roomType, name){
     const isLounge = roomType == "lounge";
     const isHb = roomType == "hb";
     const options = {
-        roomName:  isLounge ?  `Networking Lounge for ${name}`:isHb ? `Hosted Buyer for ${name}` : `Webinar for ${name}`,
+        roomName:  isLounge ?  `Product Demo for ${name}`:isHb ? `One-One ${name}` : `Webinar for ${name}`,
         width: 500,
         height: 500,
         parentNode: document.querySelector('#video'),
@@ -36,7 +36,8 @@ function init(roomType, name){
             displayName: name
         },
         configOverwrite : {
-            prejoinPageEnabled: false
+            prejoinPageEnabled: false,
+            openBridgeChannel: 'datachannel'
         }
     };
     api = new JitsiMeetExternalAPI(domain, options);
@@ -59,8 +60,10 @@ function init(roomType, name){
         $('#startBtn').show();
     }); 
     api.addEventListener('participantRoleChanged', function(_) {
+        console.log("#####",isHb);
         if (isHb) {
             api.executeCommand('password', 'ASecurePassword');
+            console.log("#####messagesent");
         }
     });
 }

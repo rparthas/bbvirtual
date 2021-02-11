@@ -4,7 +4,7 @@ var jitsi = document.createElement('script');
 jitsi.type = 'text/javascript'; 
 jitsi.async = true; 
 jitsi.defer = true; 
-jitsi.src = 'https://meet.jit.si/external_api.js';
+jitsi.src = 'https:/meet.jit.si/external_api.js';
 // jitsi.src = 'https://localhost:8443/libs/lib-jitsi-meet.min.js'; 
 s.parentNode.insertBefore(jitsi, s);
 
@@ -15,17 +15,19 @@ function init(roomName, roomType){
     const domain = 'meet.jit.si';
     const isLounge = roomType == "lounge";
     const isHb = roomType == "hb";
-    const name = isLounge ?  `Networking Lounge for ${roomName}`:isHb ? `Hosted Buyer for ${roomName}` : `Webinar for ${roomName}`;
+    const name = isLounge ?  `Product Demo for ${roomName}`:isHb ? `One-One ${roomName}` : `Webinar for ${roomName}`;
     var configOverwrite =  isLounge ? 
     { 
         startWithAudioMuted: true, 
         startAudioOnly: true,
         prejoinPageEnabled: false,
+        openBridgeChannel: true
     }:
     isHb ?
     { 
         startWithAudioMuted: true, 
         prejoinPageEnabled: true,
+        openBridgeChannel: true
     }:
     { 
         startWithAudioMuted: true, 
@@ -41,7 +43,8 @@ function init(roomName, roomType){
             'prejoin.errorDialOutStatus',
             'prejoin.errorStatusCode',
             'prejoin.errorValidation'
-        ]
+        ],
+        openBridgeChannel: true
     };
     var interfaceConfigOverwrite = isLounge || isHb ? {
         TOOLBAR_BUTTONS: [
