@@ -78,6 +78,7 @@ function init(roomName, roomType){
     api = new JitsiMeetExternalAPI(domain, options);
     api.addEventListener('videoConferenceJoined',(_)=>{
         if(isLounge && api.getParticipantsInfo().length > roomSize+1){
+            document.getElementById(`alert${roomName}`).innerHTML = '<div class="alert alert-danger" role="alert"> Room is full. Please wait for some more time.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
             api.dispose();
             return;
         }
@@ -123,6 +124,6 @@ function getUrlVars()
 $( document ).ready(function() {
     const result = getUrlVars();
     if(result.sz){
-        roomSize=result.sz;
+        roomSize=Number(result.sz);
     }
 });
