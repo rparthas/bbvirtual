@@ -87,6 +87,7 @@ function init(roomName, roomType){
     });
     api.addEventListener('videoConferenceLeft',(_)=>{
         api.dispose();
+        $("#openModalButton").click();
         $("#exhibitors").show();
     });
     setTimeout(() => {
