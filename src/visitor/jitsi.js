@@ -128,3 +128,10 @@ $( document ).ready(function() {
         roomSize=Number(result.sz);
     }
 });
+
+$("#rateYo").rateYo({
+    onSet: function (rating, rateYoInstance) {
+       rating = Math.ceil(rating);
+       $('#rating_input').val(rating);
+    }
+  });
