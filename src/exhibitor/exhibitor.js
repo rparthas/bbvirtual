@@ -37,7 +37,6 @@ function init(roomType, name){
         },
         configOverwrite : {
             prejoinPageEnabled: false,
-            openBridgeChannel: 'datachannel'
         }
     };
     api = new JitsiMeetExternalAPI(domain, options);
@@ -60,10 +59,8 @@ function init(roomType, name){
         $('#startBtn').show();
     }); 
     api.addEventListener('participantRoleChanged', function(_) {
-        console.log("#####",isHb);
         if (isHb) {
             api.executeCommand('password', 'ASecurePassword');
-            console.log("#####messagesent");
         }
     });
 }

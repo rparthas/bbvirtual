@@ -4,7 +4,7 @@ var jitsi = document.createElement('script');
 jitsi.type = 'text/javascript'; 
 jitsi.async = true; 
 jitsi.defer = true; 
-jitsi.src = 'https:/meet.jit.si/external_api.js';
+jitsi.src = 'https://meet.jit.si/external_api.js';
 // jitsi.src = 'https://localhost:8443/libs/lib-jitsi-meet.min.js'; 
 s.parentNode.insertBefore(jitsi, s);
 
@@ -16,19 +16,11 @@ function init(roomName, roomType){
     const isLounge = roomType == "lounge";
     const isHb = roomType == "hb";
     const name = isLounge ?  `Product Demo for ${roomName}`:isHb ? `One-One ${roomName}` : `Webinar for ${roomName}`;
-    // isLounge ? 
-    // { 
-    //     startWithAudioMuted: true, 
-    //     startAudioOnly: true,
-    //     prejoinPageEnabled: false,
-    //     openBridgeChannel: true
-    // }:
     var configOverwrite =  
     isHb ?
     { 
         startWithAudioMuted: true, 
         prejoinPageEnabled: true,
-        openBridgeChannel: true
     }:
     { 
         startWithAudioMuted: true, 
@@ -45,9 +37,8 @@ function init(roomName, roomType){
             'prejoin.errorStatusCode',
             'prejoin.errorValidation'
         ],
-        openBridgeChannel: true
     };
-    var interfaceConfigOverwrite = isLounge || isHb ? {
+    var interfaceConfigOverwrite = isHb ? {
         TOOLBAR_BUTTONS: [
             'microphone', 'camera', 'closedcaptions', 'desktop', 'embedmeeting', 'fullscreen',
             'fodeviceselection', 'hangup', 'profile', 'chat',
@@ -128,11 +119,11 @@ $( document ).ready(function() {
     if(result.sz){
         roomSize=Number(result.sz);
     }
+    $("#rateYo").rateYo({
+        onSet: function (rating, rateYoInstance) {
+           rating = Math.ceil(rating);
+           $('#rating_input').val(rating);
+        }
+    });
 });
 
-$("#rateYo").rateYo({
-    onSet: function (rating, rateYoInstance) {
-       rating = Math.ceil(rating);
-       $('#rating_input').val(rating);
-    }
-  });
