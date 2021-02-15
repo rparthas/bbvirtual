@@ -16,13 +16,14 @@ function init(roomName, roomType){
     const isLounge = roomType == "lounge";
     const isHb = roomType == "hb";
     const name = isLounge ?  `Product Demo for ${roomName}`:isHb ? `One-One ${roomName}` : `Webinar for ${roomName}`;
-    var configOverwrite =  isLounge ? 
-    { 
-        startWithAudioMuted: true, 
-        startAudioOnly: true,
-        prejoinPageEnabled: false,
-        openBridgeChannel: true
-    }:
+    // isLounge ? 
+    // { 
+    //     startWithAudioMuted: true, 
+    //     startAudioOnly: true,
+    //     prejoinPageEnabled: false,
+    //     openBridgeChannel: true
+    // }:
+    var configOverwrite =  
     isHb ?
     { 
         startWithAudioMuted: true, 
@@ -56,7 +57,7 @@ function init(roomName, roomType){
         ]
     }:{
         TOOLBAR_BUTTONS: [
-            'fullscreen','hangup', 'profile', 'chat','raisehand'
+            'fullscreen','hangup', 'profile', 'chat','raisehand','feedback'
         ]
     };
     const options = {
