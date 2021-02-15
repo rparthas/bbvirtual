@@ -9,10 +9,37 @@
         .exhibitor-gap {
             margin: 10px 10px 10px 10px;
         }
+        @keyframes wiggle { 
+            0% { transform: rotate(20deg); } 
+            10% { transform: rotate(-10deg); } 
+            20% { transform: rotate(18deg); } 
+            30% { transform: rotate(-9deg); } 
+            40% { transform: rotate(16deg); } 
+            50% { transform: rotate(-8deg); } 
+            60% { transform: rotate(14deg); } 
+            70% { transform: rotate(-7deg); } 
+            80% { transform: rotate(5deg); } 
+            90% { transform: rotate(2deg); } 
+            100% { transform: rotate(0deg); } 
+        }
+    
+        .wiggle { 
+            animation: wiggle infinite 3s; 
+        }
+
+        .blink {
+            animation: blink-animation 2s steps(10, start) infinite;
+        }
+        @keyframes blink-animation {
+            to {
+                visibility: hidden;
+            }
+        }
     </style>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.2.0/jquery.rateyo.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
@@ -22,7 +49,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
-    <script src="./jitsi.js"></script>
+    <script src="./visitor.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.2.0/jquery.rateyo.min.js"></script>
 </head>
@@ -64,16 +91,15 @@
                             <h3 class="mb-3 font-weight-normal">BOMBELLI Airport Equipment</h3>
                             <p class="lead">BOMBELLI Airport Equipment is a leading manufacturer of lithium-based
                                 high-performance battery systems for electro-mobility at airports around the globe.</p>
-                            <p class="my-4">Current Participants in Product Demo: <strong>
-                                    <large class="text-muted">5</large>
-                            </p></strong>
                             <div id="alertBOMBELLI Airport Equipment"></div>
                             </div>
                         </div>
                         <div class="row" style="justify-content: center; flex: 1;">
                             <div id="videos1" class="col-md-4">
                                 <button disabled=true class="btn btn-lg btn-success join" id="join"
-                                    onclick="start('BOMBELLI Airport Equipment','webinar')">Join Webinar</button>
+                                    onclick="start('BOMBELLI Airport Equipment','webinar')">
+                                    Join Webinar
+                                </button>
                             </div>
                             <div id="videos1" class="col-md-4">
                                 <button disabled=true class="btn btn-lg btn-primary join" id="join"
@@ -99,9 +125,6 @@
                                 <h3 class="mb-3 font-weight-normal">Data Capture Systems (DCS)</h3>
                                 <p class="lead">One-stop solution provider for the aviation industry to simplify all
                                     passenger data capture, ATB/BTP printing, and control processes in Airports.</p>
-                                <p class="my-4">Current Participants in Product Demo: <strong>
-                                        <large id="" class="text-muted">0</large>
-                                </p></strong>
                                 <div id="alertData Capture Systems (DCS)">
                                 </div>
                             </div>
@@ -134,9 +157,6 @@
                                     reader with a low profile design, unmistakable user feedback and 1D/2D barcode
                                     reading
                                     and RFID functionality</p>
-                                <p class="my-4">Current Participants in Product Demo: <strong>
-                                        <large class="text-muted">15</large>
-                                </p></strong>
                                 <div id="alertAccess IS"></div>
                             </div>
                         </div>
@@ -146,7 +166,7 @@
                                     onclick="start('Access IS','webinar')">Join Webinar</button>
                             </div>
                             <div id="videos1" class="col-md-6">
-                                <button disabled=true class="btn btn-lg btn-primary join" id="join"
+                                <button disabled=true class="btn btn-lg btn-primary join blink" id="join"
                                     onclick="start('Access IS','lounge')">Join Product Demo</button>
                             </div>
                         </div>
